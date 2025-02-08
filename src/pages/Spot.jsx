@@ -1,9 +1,10 @@
 import React from "react";
-import "./Spot.css"; // Import the CSS file
+import { useLocation } from "react-router-dom";
+import "./Spot.css";
 
-const SbImg = () => {
+function SbImg({src}) {
     return (
-        <img src="public/assets/living_water_tea_house.jpg" alt="Tea House" className="star-img"/>
+        <img src={`/public/assets/${src}`} alt="Tea House" className="star-img"/>
     );
 }
 
@@ -20,7 +21,7 @@ const ReviewBlock = () => {
     return (
         <div className="review-block">
             <div className="review-img-container">
-                <img src="public/assets/Five_Pointed_Star_Solid.svg.png" alt="Star" className="review-star"/>
+                <img src="/assets/Five_Pointed_Star_Solid.svg.png" alt="Star" className="review-star"/>
             </div>
             <div className="review-content">
                 <h2 className="review-username">Username</h2>
@@ -30,12 +31,17 @@ const ReviewBlock = () => {
     );
 }
 
-function Spot({ src, name, address }) {
+function Spot() {
+    const location = useLocation();
+    const business = location.state;
+
     return (
         <div className="spot-container">
             <NavBar />
-            <h1 className="spot-title">Spot Page</h1>
-            <SbImg />
+            <h1 className="spot-title">{business.name}</h1>
+            <p>{business.address}</p>
+            <img src={`/assets/${business.src}`} alt="Tea House" className="star-img"/>
+            {/* <SbImg {...business.src} /> */}
             <ReviewBlock />
         </div>
     );
