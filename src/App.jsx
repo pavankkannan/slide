@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import './App.css'
+import Spot from './pages/Spot';
 
 const App = () => {
   return (
@@ -15,12 +16,16 @@ const App = () => {
           <li>
             <Link to="/Login">Login</Link>
           </li>
+          <li>
+            <Link to="/Spot">Spot</Link>
+          </li>
         </ul>
       </nav>
 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Login" element={<Login />} />
+        <Route path="/Spot" element={<Spot/>} />
       </Routes>
     </Router>
   );
