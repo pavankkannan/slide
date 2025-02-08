@@ -13,6 +13,7 @@ import Spot from './pages/Spot';
 import Promotions from './pages/Promotions';
 import { AuthProvider } from './config/AuthContext';
 import Gmap from './pages/Gmap'
+import Reviews from './pages/Reviews';
 
 const App = () => {
   return (
@@ -46,6 +47,7 @@ const App = () => {
           <Route path="/Profile" element={<Profile/>} />
           <Route path="/Gmap" element={<Gmap/>} />
         <Route path="/Promotions" element={<Promotions/>} />
+        <Route path="/Reviews" element={<Reviews/>}/>
 
         </Routes>
       </Router>
