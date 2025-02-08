@@ -1,26 +1,21 @@
 import { useState, useEffect } from "react";
 import "./BusinessDashboard.css";
-import { auth } from "../config/firebase";
+import { auth, db } from "../config/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../config/AuthContext";
 
 export default function BusinessDashboard() {
-    const [user, setUser] = useState(null);
     const [tab, setTab] = useState("promotions");
     const navigate = useNavigate();
+    const { user } = useAuth(); // Ensure userID is retrieved
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUser(user);
-                console.log("Success");
-            } else {
-                navigate("/BusinessLogin"); // Redirect to login if not authenticated
-                console.log("fail");
-            }
-        });
-        return () => unsubscribe();
-    }, [navigate]);
+        if (!user) {
+            navigate("/BusinessLogin");
+        }
+    }, [user, navigate]);
 
     if (!user) return <p>Loading...</p>;
 
@@ -33,7 +28,7 @@ export default function BusinessDashboard() {
                 <button onClick={() => setTab("edit")} className={tab === "edit" ? "active" : ""}>Edit Business Page</button>
             </div>
             <div className="dashboard-content">
-                {tab === "promotions" && <Promotions />}
+                {tab === "promotions" && <Promotions user={user} />}
                 {tab === "loyalty" && <LoyaltyProgram />}
                 {tab === "edit" && <EditBusiness />}
             </div>
@@ -41,9 +36,22 @@ export default function BusinessDashboard() {
     );
 }
 
-function Promotions() {
+function Promotions({ user }) {
     const [showPopup, setShowPopup] = useState(false);
     const [dealText, setDealText] = useState("");
+    const [deals, setDeals] = useState([]);
+
+    useEffect(() => {
+        const fetchDeals = async () => {
+            const q = query(collection(db, "Promotions"), where("businessUserID", "==", user.uid));
+            const querySnapshot = await getDocs(q);
+            const dealsList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setDeals(dealsList);
+        };
+
+        fetchDeals();
+    }, [user]);
+
 
     const handleAddDeal = () => {
         setShowPopup(true);
@@ -54,10 +62,27 @@ function Promotions() {
         setDealText("");
     };
 
-    const handleSaveDeal = () => {
-        console.log("New Deal: ", dealText);
-        setShowPopup(false);
-        setDealText("");
+    const handleSaveDeal = async () => {
+        if (!dealText.trim()) return;
+
+        console.log("Current User: ", user);
+
+        if (!user || !user.uid) {
+            console.error("User is not authenticated.");
+            return;
+        }
+
+        try {
+            await addDoc(collection(db, "Promotions"), {
+                businessUserID: user.uid,
+                promotionText: dealText,
+            });
+            console.log("New Deal Saved: ", dealText);
+            setShowPopup(false);
+            setDealText("");
+        } catch (error) {
+            console.error("Error saving deal: ", error);
+        }
     };
 
     return (
@@ -65,6 +90,12 @@ function Promotions() {
             <h2>Manage Promotions</h2>
             <p>Here you can create and manage your promotions.</p>
             <button className="add-deal-button" onClick={handleAddDeal}>Add New Deal</button>
+
+            <ul className="deals-list">
+                {deals.map((deal) => (
+                    <li key={deal.id}>{deal.promotionText}</li>
+                ))}
+            </ul>
 
             {showPopup && (
                 <div className="popup">
