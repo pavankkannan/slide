@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import "./BusinessDashboard.css";
-import { auth } from "../config/firebase";
+import { auth, db } from "../config/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../config/AuthContext";
 
 export default function BusinessDashboard() {
     const [user, setUser] = useState(null);
@@ -10,17 +12,10 @@ export default function BusinessDashboard() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUser(user);
-                console.log("Success");
-            } else {
-                navigate("/BusinessLogin"); // Redirect to login if not authenticated
-                console.log("fail");
-            }
-        });
-        return () => unsubscribe();
-    }, [navigate]);
+        if (!user) {
+            navigate("/login");
+        }
+    }, [user, navigate]);
 
     if (!user) return <p>Loading...</p>;
 
@@ -33,7 +28,7 @@ export default function BusinessDashboard() {
                 <button onClick={() => setTab("edit")} className={tab === "edit" ? "active" : ""}>Edit Business Page</button>
             </div>
             <div className="dashboard-content">
-                {tab === "promotions" && <Promotions />}
+                {tab === "promotions" && <Promotions user={user} />}
                 {tab === "loyalty" && <LoyaltyProgram />}
                 {tab === "edit" && <EditBusiness />}
             </div>
@@ -42,8 +37,23 @@ export default function BusinessDashboard() {
 }
 
 function Promotions() {
+    const { user } = useAuth();
     const [showPopup, setShowPopup] = useState(false);
     const [dealText, setDealText] = useState("");
+    const [currentUser, setCurrentUser] = useState(user);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setUser(user);
+            } else {
+                if (window.location.pathname !== "/BusinessLogin") {
+                    navigate("/BusinessLogin"); // Redirect to login only if it exists
+                }
+            }
+        });
+        return () => unsubscribe();
+    }, [navigate]);
 
     const handleAddDeal = () => {
         setShowPopup(true);
@@ -54,10 +64,27 @@ function Promotions() {
         setDealText("");
     };
 
-    const handleSaveDeal = () => {
-        console.log("New Deal: ", dealText);
-        setShowPopup(false);
-        setDealText("");
+    const handleSaveDeal = async () => {
+        if (!dealText.trim()) return;
+
+        console.log("Current User: ", user);
+
+        if (!user || !user.uid) {
+            console.error("User is not authenticated.");
+            return;
+        }
+
+        try {
+            await addDoc(collection(db, "Promotions"), {
+                businessUserID: user.uid,
+                promotionText: dealText,
+            });
+            console.log("New Deal Saved: ", dealText);
+            setShowPopup(false);
+            setDealText("");
+        } catch (error) {
+            console.error("Error saving deal: ", error);
+        }
     };
 
     return (

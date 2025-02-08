@@ -1,23 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./BusinessLogin.css";
 import { auth, db } from "../config/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { collection, getDocs, setDoc, doc } from "firebase/firestore";
+import { useAuth } from "../config/AuthContext";
 
 export default function BusinessLogin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-
+    const { currentUser, login } = useAuth();
     const navigate = useNavigate();
+
+    // if (currentUser) {
+    //     navigate("/BusinessDashboard");
+    // }
 
     const handleLogin = async () => {
         try {
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            const userID = userCredential.user.uid;
+            await login(email, password); // Use login from AuthContext
+            const userID = currentUser?.uid; // Ensure userID is retrieved
 
-            // Check if userID exists in any document in the Businesses collection
+            if (!userID) {
+                throw new Error("Authentication failed. UserID not found.");
+            }
+
+            // Check if userID exists in the Businesses collection
             const businessesRef = collection(db, "Businesses");
             const businessesSnapshot = await getDocs(businessesRef);
             const businessExists = businessesSnapshot.docs.some(doc => doc.data().userID === userID);
