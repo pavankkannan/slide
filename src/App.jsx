@@ -38,7 +38,7 @@ const App = () => {
         <Route path="/BusinessLogin" element={<BusinessLogin/>} />
         <Route path="/Home" element={<Home />} />
         <Route path="/Spot" element={<Spot/>} />
-        <Route path="/Profile" element={<Profile/>} />
+        <Route path="/Profile" element={<Profile key={Date.now()} />} />
       </Routes>
     </Router>
   );
