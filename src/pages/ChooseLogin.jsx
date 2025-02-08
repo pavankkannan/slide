@@ -40,8 +40,8 @@ const ChooseLogin = () => {
         <div
           style={{
             padding: "20px",
-            border: `2px solid #FD3535`,
-            backgroundColor: `${selectedRole === "Student" ? "#FD3535" : "white"}`,
+            borderBottom: `2px solid #D9D9D9`,
+            backgroundColor: `${selectedRole === "Student" ? "#FD3535" : "#F6F5F5"}`,
             borderRadius: "10px",
             textAlign: "center",
             cursor: "pointer",
@@ -49,15 +49,15 @@ const ChooseLogin = () => {
           }}
           onClick={() => setSelectedRole("Student")}
         >
-          <h2 style={{ color: `${selectedRole === "Student" ? "white" : "#FD3535"}`, }}>Student</h2>
+          <h2 style={{ color: `${selectedRole === "Student" ? "#F6F5F5" : "#FD3535"}`, }}>Student</h2>
           <img style={{ width: "100%" }}src="/assets/student.png"/>
         </div>
 
         <div
           style={{
             padding: "20px",
-            border: `2px solid #FD3535`,
-            backgroundColor: `${selectedRole === "Business" ? "#FD3535" : "white"}`,
+            borderBottom: `2px solid #D9D9D9`,
+            backgroundColor: `${selectedRole === "Business" ? "#FD3535" : "#F6F5F5"}`,
             borderRadius: "10px",
             textAlign: "center",
             cursor: "pointer",
