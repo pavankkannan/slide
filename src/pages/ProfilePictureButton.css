@@ -1,13 +1,21 @@
-/* Container */
-.profile-container {
+/* Main Container - Aligns Profile Picture (Left) and Labels (Right) */
+.container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Stack profile & reviews vertically */
     align-items: center;
-    gap: 12px;
-    position: relative;
+    padding: 20px;
   }
   
-  /* Profile Picture Wrapper */
+  /* Profile Section */
+  .profile-section {
+    display: flex;
+    align-items: flex-start; /* Align to top */
+    gap: 40px; /* Space between profile picture and labels */
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  /* Profile Picture Wrapper (Top Left) */
   .profile-picture {
     width: 128px;
     height: 128px;
@@ -16,7 +24,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative; /* Needed for positioning the "+" button */
+    position: relative;
+    align-self: flex-start; /* Align to the top-left */
   }
   
   /* Profile Image */
@@ -32,11 +41,11 @@
     display: none;
   }
   
-  /* Floating "+" Button - Properly Positioned & Visible */
+  /* Floating "+" Button */
   .plus-button {
     position: absolute;
-    bottom: -15px; /* Moves the button outside */
-    right: -15px; /* Moves it outside */
+    bottom: -15px;
+    right: -15px;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -51,35 +60,69 @@
     cursor: pointer;
     transition: background-color 0.2s ease-in-out, transform 0.2s;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-    z-index: 10; /* Makes sure it's always on top */
+    z-index: 10;
   }
   
   /* Hover Effect */
   .plus-button:hover {
-    background-color: #45a049; /* Darker Green */
-    transform: scale(1.1); /* Slightly enlarge on hover */
+    background-color: #45a049;
+    transform: scale(1.1);
   }
   
-  /* Name Input Box Below Profile Picture */
-  .profile-name-input {
-    width: 300px; /* Prevents infinite width */
-    height: 80px; /* Prevents infinite height */
-    padding: 8px;
-    font-size: 16px;
-    border: 2px solid black; /* Black border outline */
+  /* VBox for Labels (Top Right) */
+  .vbox {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between labels */
+  }
+  
+  /* Label Styling */
+  .profile-label {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+  }
+  
+  /* Reviews Section - Appears Below Profile Info */
+  .reviews-section {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  /* Scrollable Reviews Container */
+/* Scrollable Reviews Container */
+.reviews-container {
+    min-height: 150px; /* Ensures scrolling even with a few reviews */
+    max-height: 300px; /* Limits height to make scrolling possible */
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
     border-radius: 5px;
-    text-align: center;
-    margin-top: 8px;
-    overflow: hidden; /* Prevents text from overflowing */
-    white-space: nowrap; /* Prevents multiple lines */
+    background: #f9f9f9;
+    width: 100%;
+    max-width: 600px;
   }
   
-  .profile-name-input::placeholder {
-    color: #999;
+  
+  /* Individual Review Card */
+  .review-card {
+    background: white;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  .profile-name-input:focus {
-    outline: none;
-    border-color: #333; /* Darker border on focus */
+  /* Review Title */
+  .review-card h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  /* Review Content */
+  .review-card p {
+    margin: 5px 0;
+    font-size: 14px;
   }
   
