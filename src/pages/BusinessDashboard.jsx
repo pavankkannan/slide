@@ -2,18 +2,18 @@ import { useState, useEffect } from "react";
 import "./BusinessDashboard.css";
 import { auth, db } from "../config/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../config/AuthContext";
 
 export default function BusinessDashboard() {
-    const [user, setUser] = useState(null);
     const [tab, setTab] = useState("promotions");
     const navigate = useNavigate();
+    const { user } = useAuth(); // Ensure userID is retrieved
 
     useEffect(() => {
         if (!user) {
-            navigate("/login");
+            navigate("/BusinessLogin");
         }
     }, [user, navigate]);
 
@@ -36,24 +36,22 @@ export default function BusinessDashboard() {
     );
 }
 
-function Promotions() {
-    const { user } = useAuth();
+function Promotions({ user }) {
     const [showPopup, setShowPopup] = useState(false);
     const [dealText, setDealText] = useState("");
-    const [currentUser, setCurrentUser] = useState(user);
+    const [deals, setDeals] = useState([]);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUser(user);
-            } else {
-                if (window.location.pathname !== "/BusinessLogin") {
-                    navigate("/BusinessLogin"); // Redirect to login only if it exists
-                }
-            }
-        });
-        return () => unsubscribe();
-    }, [navigate]);
+        const fetchDeals = async () => {
+            const q = query(collection(db, "Promotions"), where("businessUserID", "==", user.uid));
+            const querySnapshot = await getDocs(q);
+            const dealsList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setDeals(dealsList);
+        };
+
+        fetchDeals();
+    }, [user]);
+
 
     const handleAddDeal = () => {
         setShowPopup(true);
@@ -92,6 +90,12 @@ function Promotions() {
             <h2>Manage Promotions</h2>
             <p>Here you can create and manage your promotions.</p>
             <button className="add-deal-button" onClick={handleAddDeal}>Add New Deal</button>
+
+            <ul className="deals-list">
+                {deals.map((deal) => (
+                    <li key={deal.id}>{deal.promotionText}</li>
+                ))}
+            </ul>
 
             {showPopup && (
                 <div className="popup">
