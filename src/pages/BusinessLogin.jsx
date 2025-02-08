@@ -1,14 +1,37 @@
 import { useState } from "react";
 import "./BusinessLogin.css";
+import { auth, db } from "../config/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { collection, getDocs, setDoc, doc } from "firebase/firestore";
 
 export default function BusinessLogin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
-    const handleLogin = () => {
-        // Add login functionality here
-        console.log("Logging in as business with", email, password);
+    const handleLogin = async () => {
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const userID = userCredential.user.uid;
+
+            // Check if userID exists in any document in the Businesses collection
+            const businessesRef = collection(db, "Businesses");
+            const businessesSnapshot = await getDocs(businessesRef);
+            const businessExists = businessesSnapshot.docs.some(doc => doc.data().userID === userID);
+
+            if (businessExists) {
+                console.log("Business logged in successfully");
+            } else {
+                setError("User is not registered as a business.");
+                console.error("UserID not found in Businesses collection");
+            }
+        } catch (error) {
+            setError(error.message);
+            console.error("Error logging in: ", error);
+        }
     };
+
+
 
     return (
         <div className="login-container">
@@ -28,6 +51,7 @@ export default function BusinessLogin() {
                     onChange={(e) => setPassword(e.target.value)}
                     className="login-input"
                 />
+                <h1 className="error-message">{error}</h1> 
                 <button
                     onClick={handleLogin}
                     className="login-button"
