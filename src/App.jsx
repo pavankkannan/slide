@@ -22,7 +22,7 @@ const App = () => {
             <Link to="/Home">Home</Link>
           </li>
           <li>
-            <Link to ="/Spot">Spot</Link><Link/>
+            <Link to ="/Spot/1">Spot</Link>
           </li>
           <li>
             <Link to ="/Profile">Profile</Link>
@@ -38,7 +38,7 @@ const App = () => {
         <Route path="/BusinessLogin" element={<BusinessLogin/>} />
         <Route path="/Home" element={<Home />} />
         <Route path="/Spot" element={<Spot/>} />
-        <Route path="/Profile" element={<Profile key={Date.now()} />} />
+        <Route path="/Profile" element={<Profile/>} />
       </Routes>
     </Router>
   );
