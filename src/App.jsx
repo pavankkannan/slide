@@ -13,7 +13,7 @@ import Spot from './pages/Spot';
 const App = () => {
   return (
     <Router>
-      {/* <nav>
+      { <nav>
         <ul>
           <li>
             <Link to="/ChooseLogin">ChooseLogin</Link>
@@ -24,8 +24,11 @@ const App = () => {
           <li>
             <Link to ="/Spot">Spot</Link><Link/>
           </li>
+          <li>
+            <Link to ="/Profile">Profile</Link>
+          </li>
         </ul>
-      </nav> */}
+      </nav>}
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -38,6 +41,7 @@ const App = () => {
         <Route path="/BusinessLogin" element={<BusinessLogin/>} />
         <Route path="/Home" element={<Home />} />
         <Route path="/Spot" element={<Spot/>} />
+        <Route path="/Profile" element={<Profile/>} />
       </Routes>
     </Router>
   );
