@@ -59,12 +59,6 @@ function NavBar() {
 
 function BusinessCard({src, name, address, onClick}) {
 
-    const navigate = useNavigate();
-
-    const handleCardClick = (business) => {
-        navigate(`/business/${business.id}`, { state: business });
-    };
-
     return (
         <div className='BusinessCard'
             onClick={onClick}
@@ -83,8 +77,8 @@ function BusinessCards() {
     const navigate = useNavigate();
 
     const handleCardClick = (business) => {
-        // navigate('/Spot', { state: business })
         navigate(`/Spot/${business.id}`, { state: business });
+        // navigate(`/Spot`);
     };
 
     return (
