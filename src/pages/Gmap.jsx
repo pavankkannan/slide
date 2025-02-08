@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 
 const mapContainerStyle = {
@@ -15,6 +15,45 @@ const Gmap = () => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyB9DdlpwHl8HPmiUbF-UNgWaduPERUVztk",
   });
+
+  const [businessInfo, setBusinessInfo] = useState({
+    businessName: "Loading...",
+    address: "Loading...",
+    city: "Loading...",
+    state: "Loading...",
+    zipCode: "Loading..."
+  });
+
+  const fileInputRef = useRef(null);
+  const userDocId = "gIx5UzgWBZ3EqKLUiN4X"; // Replace with actual document ID
+
+    useEffect(() => {
+        const fetchBusinessData = async () => {
+        try {
+            console.log("Fetching Business data...");
+            const userDocRef = doc(db, "Businesses", userDocId);
+            const docSnap = await getDoc(userDocRef);
+
+            if (docSnap.exists()) {
+            console.log("Business data found:", docSnap.data());
+            setBusinessInfo({
+                businessName: docSnap.data().businessName || "Unknown",
+                address: docSnap.data().address || "Unknown",
+                city: docSnap.data().city || "Unknown",
+                state: docSnap.data().state || "Unknown",
+                zipCode: docSnap.data().zipCode || "Unknown"
+            });
+
+            } else {
+            console.log("No such user found!");
+            }
+        } catch (error) {
+            console.error("Error fetching user data:", error);
+        }
+        };
+        fetchUserData()
+    }, []);
+
 
   const [userLocation, setUserLocation] = useState(null);
   useEffect(() => {
