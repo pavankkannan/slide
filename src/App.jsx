@@ -11,6 +11,7 @@ import BusinessLogin from './pages/BusinessLogin'
 import BusinessDashboard from './pages/BusinessDashboard'
 import Spot from './pages/Spot';
 import Promotions from './pages/Promotions';
+import Gmap from './pages/Gmap'
 
 const App = () => {
   return (
@@ -24,7 +25,7 @@ const App = () => {
             <Link to="/Home">Home</Link>
           </li>
           <li>
-            <Link to ="/Spot/1">Spot</Link>
+            <Link to ="/Gmap">GMAP</Link>
           </li>
           <li>
             <Link to ="/Profile">Profile</Link>
@@ -42,6 +43,7 @@ const App = () => {
         <Route path="/Home" element={<Home />} />
         <Route path="/Spot/:id" element={<Spot/>} />
         <Route path="/Profile" element={<Profile/>} />
+        <Route path="/Gmap" element={<Gmaap/>} />
         <Route path="/Promotions" element={<Promotions/>} />
 
       </Routes>
