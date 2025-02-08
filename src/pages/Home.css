@@ -47,14 +47,16 @@
 }
 
 .BusinessCard {
-    height: 250px;
+    height: 240px;
     width: 175px;
     background-color: #F6F5F5;
     border-radius: 5px;
+    border-bottom: 1px solid #4d4d4d;
 }
 
 .BusinessCard img {
     border-radius: 5px 5px 0 0;
+    height: 65%;
     width: 100%;
 }
 
@@ -68,7 +70,12 @@
     text-align: left;
 }
 
+.BusinessCard:hover {
+    cursor: pointer;
+}
+
 .cardText {
-    padding: 10px;
+    color:#FD3535;
+    padding: 7.5px;
     padding-top: 0px;
 }

@@ -19,7 +19,7 @@ const App = () => {
             <Link to="/ChooseLogin">ChooseLogin</Link>
           </li>
           <li>
-            <Link to="/ChooseLogin">Login</Link>
+            <Link to="/Home">Home</Link>
           </li>
           <li>
             <Link to ="/Spot">Spot</Link><Link/>
@@ -28,9 +28,6 @@ const App = () => {
       </nav>
 
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/ChooseLogin" element={<ChooseLogin />} />
-        <Route path="/Spot" element={<Spot/>}/>
         <Route path="/" element={<ChooseLogin/>} />
         <Route path="/ChooseLogin" element={<ChooseLogin/>} />
         <Route path="/Register" element={<Register/>} />
