@@ -8,18 +8,19 @@ const NavBar = () => {
         <nav className="navbar">
             <a className="nav-link back-button" onClick={() => navigate(-1)}>Back</a>
             <a className="nav-link" onClick={() => {
-                navigate(-1);
                 navigate(`/Reviews`);}}>Reviews</a>
             <a className="nav-link" onClick={() => {
-                navigate(-1);
                 navigate(`/Promotions`);}}>Promotions</a>
         </nav>
     );
 };
 
 const Promotions = () => {
-    (
-        <h1>HELL WORLD</h1>
+    return (
+        <>
+        <NavBar/>
+        <h2>Now Promotions</h2>
+        </>
     );
 };
 
