@@ -1,39 +1,47 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./Spot.css";
 
-function SbImg({src}) {
+function SbImg({ src }) {
     return (
-        <img src={`/public/assets/${src}`} alt="Tea House" className="star-img"/>
+        <img src={`/public/assets/${src}`} alt="Tea House" className="star-img" />
     );
 }
 
 const NavBar = () => {
+    const navigate = useNavigate();
+
     return (
         <nav className="navbar">
-            <a className="nav-link" href="#home">Reviews</a>
-            <a className="nav-link" href="#promotions">Promotions</a>
+            <a className="nav-link" onClick={() => navigate(-1)}>Back</a>
+            <a className="nav-link" onClick={() => {
+                navigate(-1);
+                navigate("/Home");}}>Reviews</a>
+            <a className="nav-link" onClick={() => {
+                navigate(-1);
+                navigate("/Promotions");}}>Promotions</a>
         </nav>
     );
-}
+};
 
 const ReviewBlock = () => {
     return (
         <div className="review-block">
             <div className="review-img-container">
-
-                <img src="public/assets/Five_Pointed_Star_Solid.svg.png" alt="Star" className="review-star"/>
+                <img src="public/assets/Five_Pointed_Star_Solid.svg.png" alt="Star" className="review-star" />
                 <div className="starRating">
                     5.0
                 </div>
             </div>
             <div className="review-content">
                 <h2 className="review-username">Username</h2>
-                <p className="review-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt quo mollitia quasi quam aut quos facere unde nisi corporis! Eum voluptates vitae voluptatum, suscipit ducimus quos rem maiores earum hic?</p>
+                <p className="review-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt quo mollitia quasi quam aut quos facere unde nisi corporis! Eum voluptates vitae voluptatum, suscipit ducimus quos rem maiores earum hic?
+                </p>
             </div>
         </div>
     );
-}
+};
 
 function Spot() {
     const location = useLocation();
@@ -44,11 +52,10 @@ function Spot() {
             <NavBar />
             <h1 className="spot-title">{business.name}</h1>
             <p>{business.address}</p>
-            <img src={`/assets/${business.src}`} alt="Tea House" className="star-img"/>
-            {/* <SbImg {...business.src} /> */}
+            <img src={`/assets/${business.src}`} alt="Tea House" className="star-img" />
             <ReviewBlock />
         </div>
     );
 }
 
-export default Spot
+export default Spot;
