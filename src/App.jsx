@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import ChooseLogin from './pages/ChooseLogin';
+import Profile from './pages/Profile';
 import './App.css'
 
 const App = () => {
@@ -15,12 +16,16 @@ const App = () => {
           <li>
             <Link to="/ChooseLogin">Login</Link>
           </li>
+          <li>
+            <Link to="/Profile">Profile</Link>
+          </li>
         </ul>
       </nav>
 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/ChooseLogin" element={<ChooseLogin />} />
+        <Route path="/Profile" element={<Profile/>} />
       </Routes>
     </Router>
   );
