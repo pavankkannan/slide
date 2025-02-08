@@ -2,8 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-
-
 const ChooseLogin = () => {
   const [selectedRole, setSelectedRole] = useState(null);
 

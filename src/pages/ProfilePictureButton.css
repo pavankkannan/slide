@@ -1,0 +1,85 @@
+/* Container */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+  }
+  
+  /* Profile Picture Wrapper */
+  .profile-picture {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    border: 4px solid #d1d5db; /* Gray-300 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Needed for positioning the "+" button */
+  }
+  
+  /* Profile Image */
+  .profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
+  /* Hidden Input */
+  .hidden-input {
+    display: none;
+  }
+  
+  /* Floating "+" Button - Properly Positioned & Visible */
+  .plus-button {
+    position: absolute;
+    bottom: -15px; /* Moves the button outside */
+    right: -15px; /* Moves it outside */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #4CAF50; /* Green */
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out, transform 0.2s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    z-index: 10; /* Makes sure it's always on top */
+  }
+  
+  /* Hover Effect */
+  .plus-button:hover {
+    background-color: #45a049; /* Darker Green */
+    transform: scale(1.1); /* Slightly enlarge on hover */
+  }
+  
+  /* Name Input Box Below Profile Picture */
+  .profile-name-input {
+    width: 300px; /* Prevents infinite width */
+    height: 80px; /* Prevents infinite height */
+    padding: 8px;
+    font-size: 16px;
+    border: 2px solid black; /* Black border outline */
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 8px;
+    overflow: hidden; /* Prevents text from overflowing */
+    white-space: nowrap; /* Prevents multiple lines */
+  }
+  
+  .profile-name-input::placeholder {
+    color: #999;
+  }
+  
+  .profile-name-input:focus {
+    outline: none;
+    border-color: #333; /* Darker border on focus */
+  }
+  
