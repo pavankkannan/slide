@@ -1,9 +1,10 @@
-.navBar {
+.NavBar {
     border-radius: 15px;
     display: flex;
     flex-direction: row;
     width: 85vw;
     height: 35px;
+    margin-bottom: 50px;
 }
 
 .navTab {
@@ -37,4 +38,37 @@
 .navTab:active {
     color: white;
     background-color: #FD3535;
+}
+
+.cardRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.BusinessCard {
+    height: 250px;
+    width: 175px;
+    background-color: #F6F5F5;
+    border-radius: 5px;
+}
+
+.BusinessCard img {
+    border-radius: 5px 5px 0 0;
+    width: 100%;
+}
+
+.BusinessCard h1 {
+    font-size: 12px;
+    text-align: left;
+}
+
+.BusinessCard p {
+    font-size: 10px;
+    text-align: left;
+}
+
+.cardText {
+    padding: 10px;
+    padding-top: 0px;
 }
