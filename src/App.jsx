@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import ChooseLogin from './pages/ChooseLogin';
 import './App.css'
+import Spot from './pages/Spot';
 
 const App = () => {
   return (
@@ -13,7 +14,10 @@ const App = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/ChooseLogin">Login</Link>
+            <Link to="/Login">Login</Link>
+          </li>
+          <li>
+            <Link to="/Spot">Spot</Link>
           </li>
         </ul>
       </nav>
@@ -21,6 +25,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/ChooseLogin" element={<ChooseLogin />} />
+        <Route path="/Spot" element={<Spot/>} />
       </Routes>
     </Router>
   );
