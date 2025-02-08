@@ -3,10 +3,12 @@ import "./Register.css";
 import { db, storage } from "../config/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { v4 as uuidv4 } from "uuid";
 
 export default function Register() {
     const [role, setRole] = useState("student");
+    const [error, setError] = useState("");
     const [formData, setFormData] = useState({
         profilePicture: null,
         username: "",
@@ -24,8 +26,11 @@ export default function Register() {
         businessPicture: null,
     });
 
+    const auth = getAuth();
+
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, type, files, value } = e.target;
+        setFormData({ ...formData, [name]: type === "file" ? files[0] : value });
     };
 
     const uploadImage = async (file) => {
@@ -47,8 +52,11 @@ export default function Register() {
         if (!isFormComplete()) return;
         console.log("Registering", formData);
         try {
-            const userID = uuidv4(); // Generate a random user ID
-            const businessID = uuidv4();
+
+            const email = role === "student" ? formData.schoolEmail : formData.businessEmail;
+            const userCredential = await createUserWithEmailAndPassword(auth, email, formData.password);
+            const userID = userCredential.user?.uid;
+
             const profilePictureURL = await uploadImage(formData.profilePicture);
             const businessPictureURL = await uploadImage(formData.businessPicture);
 
@@ -64,7 +72,7 @@ export default function Register() {
                 });
             } else {
                 await addDoc(collection(db, "Businesses"), {
-                    businessID,
+                    userID,
                     businessName: formData.businessName,
                     address: formData.address,
                     city: formData.city,
@@ -75,31 +83,9 @@ export default function Register() {
                     businessPicture: businessPictureURL,
                 });
             }
-
-            await addDoc(collection(db, "Users"), {
-                userID,
-                ...(role === "student"
-                    ? {
-                        profilePicture: profilePictureURL,
-                        username: formData.username,
-                        schoolEmail: formData.schoolEmail,
-                        password: formData.password,
-                        university: formData.university,
-                        year: formData.year,
-                    }
-                    : {
-                        businessName: formData.businessName,
-                        address: formData.address,
-                        city: formData.city,
-                        zipCode: formData.zipCode,
-                        state: formData.state,
-                        businessEmail: formData.businessEmail,
-                        password: formData.password,
-                        businessPicture: businessPictureURL,
-                    }),
-            });
             console.log("User added successfully with ID:", userID);
         } catch (error) {
+            setError(error);
             console.error("Error adding user: ", error);
         }
     };
@@ -136,6 +122,7 @@ export default function Register() {
                     </>
                 )}
                 <button className="register-button" onClick={handleSubmit}>Register</button>
+                <h1 className="error-message">{error}</h1> 
             </div>
         </div>
     );
