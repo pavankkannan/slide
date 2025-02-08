@@ -1,9 +1,9 @@
 
-const bg = () => {
+const BgImg = () => {
     return (
         <div
           style={{
-            backgroundImage: "url('/src/.jpg')", // If in 'public' folder
+            backgroundImage: "url('/Users/shanesomson/Slide-Proj-Hackathon/slide/src/assets/living_water_tea_house.jpg')", // If in 'public' folder
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -20,7 +20,12 @@ const bg = () => {
 
 
 const Spot = () => {
-    return <h1>Spot Page</h1>;
+    return (
+        <>
+            <h1>Spot Page</h1>;
+            <BgImg/>
+        </>
+    )
   };
   
   export default Spot;
