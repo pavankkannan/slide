@@ -22,7 +22,7 @@ const App = () => {
             <Link to="/Home">Home</Link>
           </li>
           <li>
-            <Link to ="/Spot">Spot</Link><Link/>
+            <Link to ="/Spot/1">Spot</Link><Link/>
           </li>
           <li>
             <Link to ="/Profile">Profile</Link>
