@@ -1,26 +1,36 @@
 
-const bg = () => {
+const BgImg = () => {
     return (
-        <div
-          style={{
-            backgroundImage: "url('/src/.jpg')", // If in 'public' folder
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            height: "100vh",
-            width: "100vw",
-          }}
-        >
-          <h1 style={{ color: "white", textAlign: "center", paddingTop: "20vh" }}>
+        <div>
+          <h1>
             Welcome to My Page
           </h1>
         </div>
       );
 }
 
+const NavBar = () => {
+    return (
+        <div>
+            <a class="reviews" href="#home">Reviews</a>
+            <a href="#promotions">Promotions</a>
+ 
+        </div>
+    );
+}
+
+
 
 const Spot = () => {
-    return <h1>Spot Page</h1>;
+    return (
+        <>  
+            <NavBar/>
+            <h1>Spot Page</h1>;
+            <input type="button" value= "Reviews" />
+            <Text>Hello World</Text>
+            
+        </>
+    )
   };
   
   export default Spot;
