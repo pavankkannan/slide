@@ -24,6 +24,9 @@ const App = () => {
           <li>
             <Link to ="/Spot">Spot</Link><Link/>
           </li>
+          <li>
+            <Link to ="/Profile">Profile</Link>
+          </li>
         </ul>
       </nav>
 
@@ -35,6 +38,7 @@ const App = () => {
         <Route path="/BusinessLogin" element={<BusinessLogin/>} />
         <Route path="/Home" element={<Home />} />
         <Route path="/Spot" element={<Spot/>} />
+        <Route path="/Profile" element={<Profile/>} />
       </Routes>
     </Router>
   );
