@@ -15,16 +15,7 @@ const App = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/Login">Login</Link>
-          </li>
-          <li>
-            <Link to="/Spot">Spot</Link>
-          </li>
-          <li>
-            <Link to="/Profile">Profile</Link>
-          </li>
-          <li>
-            <Link to="/Profile">Profile</Link>
+            <Link to="/ChooseLogin">Login</Link>
           </li>
         </ul>
       </nav>
@@ -32,8 +23,6 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/ChooseLogin" element={<ChooseLogin />} />
-        <Route path="/Spot" element={<Spot/>} />
-        <Route path="/Profile" element={<Profile/>} />
       </Routes>
     </Router>
   );
