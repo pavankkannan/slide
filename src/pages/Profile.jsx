@@ -32,14 +32,12 @@ const ProfilePictureButton = () => {
 
         ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
 
-        // Convert to compressed image
         const compressedImage = canvas.toDataURL("image/jpeg", quality);
         callback(compressedImage);
       };
     };
   };
 
-  // Handle image selection
   const handleImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
@@ -49,7 +47,6 @@ const ProfilePictureButton = () => {
     }
   };
 
-  // Trigger file input when clicking the "+" button
   const handleButtonClick = () => {
     fileInputRef.current.click();
   };

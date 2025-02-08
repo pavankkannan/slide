@@ -36,7 +36,7 @@ const ChooseLogin = () => {
           Choose Your Login
         </h1>
       </div>
-      <div style={{ display: "flex", gap: "20px", marginTop: "20px" }}>
+      <div style={{ display: "flex", gap: "30px", marginTop: "20px" }}>
         <div
           style={{
             padding: "20px",
@@ -66,30 +66,35 @@ const ChooseLogin = () => {
           onClick={() => setSelectedRole("Business")}
         >
           <h2 style={{ color: `${selectedRole === "Business" ? "white" : "#FD3535"}`}}>Business</h2>
-          <img style={{ width: "100%" }}src="/assets/businessman.png"/>
+          <img style={{ width: "100%", }}src="/assets/businessman.png"/>
         </div>
       </div>
 
-      {selectedRole && (
-        <button
-          style={{
-            marginTop: "20px",
-            padding: "10px 20px",
-            backgroundColor: "#FD3535",
-            color: "#FFFFFF",
-            border: "none",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
-          onClick={handleRole}
-        >
-          Continue as {selectedRole}
-        </button>
-      )}
+      <button
+        style={{
+          height: "50px",
+          width: "250px",
+          fontSize: "14px",
+          marginTop: "20px",
+          padding: "10px 20px",
+          backgroundColor: "#FD3535",
+          color: "#FFFFFF",
+          border: "none",
+          borderRadius: "5px",
+          cursor: "pointer",
+          opacity: selectedRole ? 1 : 0,
+        }}
+        onClick={handleRole}
+      >
+        Continue as {selectedRole}
+      </button>
 
       <button
         style={{
-          marginTop: "10px",
+          height: "50px",
+          width: "250px",
+          fontSize: "14px",
+          marginTop: "20px",
           padding: "10px 20px",
           backgroundColor: "#4D4D4D",
           color: "#FFFFFF",
