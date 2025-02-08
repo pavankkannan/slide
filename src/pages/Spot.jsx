@@ -21,6 +21,7 @@ const ReviewBlock = () => {
     return (
         <div className="review-block">
             <div className="review-img-container">
+
                 <img src="public/assets/Five_Pointed_Star_Solid.svg.png" alt="Star" className="review-star"/>
                 <div className="starRating">
                     5.0
