@@ -1,5 +1,3 @@
-import { useState, useRef } from "react";
-import "./ProfilePictureButton.css";
 import { useState, useEffect, useRef } from "react";
 import "./ProfilePictureButton.css"; // Import CSS file
 import { doc, getDoc, collection, getDocs } from "firebase/firestore"; // Firestore functions
@@ -66,6 +64,7 @@ const ProfilePictureButton = () => {
     fetchUserReviews();
   }, []);
 
+  // Handle image selection
   const handleImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
@@ -79,6 +78,7 @@ const ProfilePictureButton = () => {
     }
   };
 
+  // Trigger file input when clicking the "+" button
   const handleButtonClick = () => {
     fileInputRef.current.click();
   };
