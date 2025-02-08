@@ -9,6 +9,7 @@ import './App.css'
 import StudentLogin from './pages/StudentLogin'
 import BusinessLogin from './pages/BusinessLogin'
 import Spot from './pages/Spot';
+import Promotions from './pages/Promotions';
 
 const App = () => {
   return (
@@ -39,7 +40,8 @@ const App = () => {
         <Route path="/Home" element={<Home />} />
         <Route path="/Spot/:id" element={<Spot/>} />
         <Route path="/Profile" element={<Profile/>} />
-        <Route path="/Profile" element={<Profile/>} />
+        <Route path="/Promotions" element={<Promotions/>} />
+
       </Routes>
     </Router>
   );

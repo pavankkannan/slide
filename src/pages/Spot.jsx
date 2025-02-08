@@ -15,11 +15,11 @@ const NavBar = () => {
         <nav className="navbar">
             <a className="nav-link" onClick={() => navigate(-1)}>Back</a>
             <a className="nav-link" onClick={() => {
-                navigate(-1);
-                navigate("/Home");}}>Reviews</a>
+                
+                navigate(`/Home`);}}>Reviews</a>
             <a className="nav-link" onClick={() => {
-                navigate(-1);
-                navigate("/Promotions");}}>Promotions</a>
+                
+                navigate(`/Promotions`);}}>Promotions</a>
         </nav>
     );
 };
