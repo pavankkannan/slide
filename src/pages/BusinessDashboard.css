@@ -42,3 +42,18 @@
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+
+.add-deal-button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #FD3535;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.add-deal-button:hover {
+    background-color: #c62828;
+}

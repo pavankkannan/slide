@@ -11,6 +11,7 @@ import BusinessLogin from './pages/BusinessLogin'
 import BusinessDashboard from './pages/BusinessDashboard'
 import Spot from './pages/Spot';
 import Promotions from './pages/Promotions';
+import { AuthProvider } from './config/AuthContext';
 import Gmap from './pages/Gmap'
 
 const App = () => {
@@ -46,8 +47,9 @@ const App = () => {
         <Route path="/Gmap" element={<Gmap/>} />
         <Route path="/Promotions" element={<Promotions/>} />
 
-      </Routes>
-    </Router>
+        </Routes>
+      </Router>
+    </AuthProvider >
   );
 };
 
