@@ -9,6 +9,7 @@ import './App.css'
 import StudentLogin from './pages/StudentLogin'
 import BusinessLogin from './pages/BusinessLogin'
 import Spot from './pages/Spot';
+import Gmap from './pages/Gmap'
 
 const App = () => {
   return (
@@ -22,7 +23,7 @@ const App = () => {
             <Link to="/Home">Home</Link>
           </li>
           <li>
-            <Link to ="/Spot/1">Spot</Link>
+            <Link to ="/Gmap">GMAP</Link>
           </li>
           <li>
             <Link to ="/Profile">Profile</Link>
@@ -39,7 +40,7 @@ const App = () => {
         <Route path="/Home" element={<Home />} />
         <Route path="/Spot/:id" element={<Spot/>} />
         <Route path="/Profile" element={<Profile/>} />
-        <Route path="/Profile" element={<Profile/>} />
+        <Route path="/Gmap" element={<Gmap/>} />
       </Routes>
     </Router>
   );
