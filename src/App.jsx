@@ -12,7 +12,7 @@ import BusinessDashboard from './pages/BusinessDashboard'
 import Spot from './pages/Spot';
 import Promotions from './pages/Promotions';
 import { AuthProvider } from './config/AuthContext';
-import Gmap from './pages/Gmap'
+import Gmap from './pages/Gmap';
 import Reviews from './pages/Reviews';
 
 const App = () => {

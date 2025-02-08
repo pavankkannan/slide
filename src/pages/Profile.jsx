@@ -3,7 +3,7 @@ import "./ProfilePictureButton.css"; // Import CSS file
 import { doc, getDoc, collection, getDocs } from "firebase/firestore"; // Firestore functions
 import { db } from "/src/config/firebase.js"; // Import Firestore from firebase.js
 import { useNavigate } from "react-router-dom";
-import { useAuth} from '../config/AuthContext';
+import { useAuth } from "../config/AuthContext";
 
 const ProfilePictureButton = ({ user }) => {
   const navigate = useNavigate(); // Initialize navigation
