@@ -3,8 +3,9 @@ import "./ProfilePictureButton.css"; // Import CSS file
 import { doc, getDoc, collection, getDocs } from "firebase/firestore"; // Firestore functions
 import { db } from "/src/config/firebase.js"; // Import Firestore from firebase.js
 import { useNavigate } from "react-router-dom";
+import { useAuth}
 
-const ProfilePictureButton = () => {
+const ProfilePictureButton = ({ user }) => {
   const navigate = useNavigate(); // Initialize navigation
   const [image, setImage] = useState(null);
   const [userInfo, setUserInfo] = useState({
@@ -16,7 +17,7 @@ const ProfilePictureButton = () => {
 
   const [reviews, setReviews] = useState([]);
   const fileInputRef = useRef(null);
-  const userDocId = "DyRZqx76PMw2eIYztJqg"; // Replace with actual document ID
+  const userDocId = user.uid; // Replace with actual document ID
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -112,11 +113,13 @@ const ProfilePictureButton = () => {
           {reviews.length === 0 ? (
             <p>No reviews yet.</p>
           ) : (
-            reviews.map(review => (
+
+            reviews
+            .map(review => (
               <div key={review.id} className="review-card">
-                <h3>{review.Restaurant}</h3>
-                <p><strong>Rating:</strong> {review.Rating}/5</p>
-                <p>{review.Review}</p>
+                  <h3>{review.Restaurant || "Unknown Restaurant"}</h3>
+                  <p><strong>Rating:</strong> {review.Rating ? `${parseFloat(review.Rating)}/5` : "No rating available"}</p>
+                  <p>{review.Review ? review.Review : "No review available"}</p>
               </div>
             ))
           )}

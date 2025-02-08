@@ -80,7 +80,7 @@
   .profile-label {
     font-size: 20px;
     font-weight: bold;
-    color: black;
+    color: rgb(247, 7, 7);
   }
   
   /* Reviews Section - Appears Below Profile Info */
@@ -117,7 +117,7 @@
   /* Review Title */
   .review-card h3 {
     margin: 0;
-    font-size: 18px;
+    font-size: 15px;
   }
   
   /* Review Content */
