@@ -1,11 +1,92 @@
+import { useState, useRef } from "react";
+import "./ProfilePictureButton.css"; // Import CSS file
 
+const ProfilePictureButton = () => {
+  const [image, setImage] = useState(null);
+  const [name, setName] = useState(""); // New state for text input
+  const fileInputRef = useRef(null); // Reference to the hidden file input
 
-const Profile = () => {
-    return (
+  // Resize and crop image to a circular shape using Canvas API
+  const resizeAndCropToCircle = (file, size, quality, callback) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
 
-        <h1>Hell World</h1>
-    );
+    reader.onload = (event) => {
+      const img = new Image();
+      img.src = event.target.result;
 
-}
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
 
-export default Profile;
+        canvas.width = size;
+        canvas.height = size;
+
+        // Draw circular mask
+        ctx.beginPath();
+        ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.clip();
+
+        // Center and resize image within the circle
+        const scale = Math.max(size / img.width, size / img.height);
+        const x = (size - img.width * scale) / 2;
+        const y = (size - img.height * scale) / 2;
+
+        ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+
+        // Convert to compressed image
+        const compressedImage = canvas.toDataURL("image/jpeg", quality);
+        callback(compressedImage);
+      };
+    };
+  };
+
+  // Handle image selection
+  const handleImageChange = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
+      resizeAndCropToCircle(file, 200, 0.8, (compressedImage) => {
+        setImage(compressedImage);
+      });
+    }
+  };
+
+  // Trigger file input when clicking the "+" button
+  const handleButtonClick = () => {
+    fileInputRef.current.click();
+  };
+
+  return (
+    <div className="profile-container">
+      {/* Profile Picture Container */}
+      <div className="profile-picture">
+        <img src={image || "/default-avatar.png"} alt="Profile" className="profile-image" />
+
+        {/* Floating "+" Button */}
+        <button className="plus-button" onClick={handleButtonClick}>+</button>
+      </div>
+
+      {/* Hidden File Input */}
+      <input
+        type="file"
+        accept="image/*"
+        ref={fileInputRef}
+        className="hidden-input"
+        onChange={handleImageChange}
+      />
+
+      {/* Text Box Below the Profile Picture */}
+      <input
+        type="text"
+        className="profile-name-input"
+        placeholder="Enter Name"
+        maxLength="20" /* Prevents infinite text input */
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+    </div>
+  );
+};
+
+export default ProfilePictureButton;
