@@ -27,7 +27,6 @@ const Spot = () => {
             <NavBar/>
             <h1>Spot Page</h1>;
             <input type="button" value= "Reviews" />
-            <Text>Hello World</Text>
             
         </>
     )
