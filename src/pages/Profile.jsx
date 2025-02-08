@@ -2,8 +2,10 @@ import { useState, useEffect, useRef } from "react";
 import "./ProfilePictureButton.css"; // Import CSS file
 import { doc, getDoc, collection, getDocs } from "firebase/firestore"; // Firestore functions
 import { db } from "/src/config/firebase.js"; // Import Firestore from firebase.js
+import { useNavigate } from "react-router-dom";
 
 const ProfilePictureButton = () => {
+  const navigate = useNavigate(); // Initialize navigation
   const [image, setImage] = useState(null);
   const [userInfo, setUserInfo] = useState({
     name: "Loading...",
@@ -12,11 +14,10 @@ const ProfilePictureButton = () => {
     year: "Loading..."
   });
 
-  const [reviews, setReviews] = useState([]); // Store user's reviews
+  const [reviews, setReviews] = useState([]);
   const fileInputRef = useRef(null);
   const userDocId = "DyRZqx76PMw2eIYztJqg"; // Replace with actual document ID
 
-  // Fetch user data & reviews when the profile page loads
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -33,7 +34,6 @@ const ProfilePictureButton = () => {
             year: docSnap.data().year || "Unknown"
           });
 
-          // Load profile picture if available
           setImage(docSnap.data().profilePicture || "/default-avatar.png");
         } else {
           console.log("No such user found!");
@@ -46,7 +46,7 @@ const ProfilePictureButton = () => {
     const fetchUserReviews = async () => {
       try {
         console.log("Fetching user reviews...");
-        const reviewsRef = collection(db, "Users", userDocId, "Reviews"); // Get the Reviews subcollection
+        const reviewsRef = collection(db, "Users", userDocId, "Reviews");
         const querySnapshot = await getDocs(reviewsRef);
         const userReviews = querySnapshot.docs.map(doc => ({
           id: doc.id,
@@ -64,45 +64,39 @@ const ProfilePictureButton = () => {
     fetchUserReviews();
   }, []);
 
-  // Handle image selection
-  const handleImageChange = (event) => {
-    if (event.target.files && event.target.files[0]) {
-      const file = event.target.files[0];
-      const reader = new FileReader();
-
-      reader.onload = (e) => {
-        setImage(e.target.result);
-      };
-
-      reader.readAsDataURL(file);
-    }
-  };
-
-  // Trigger file input when clicking the "+" button
-  const handleButtonClick = () => {
-    fileInputRef.current.click();
-  };
-
   return (
     <div className="container">
+      {/* 🔹 Back to Home Button (Top-Right) */}
+      <button className="nav-button" onClick={() => navigate("/Home")}>
+        Return Back
+      </button>
+
       {/* Profile Section */}
       <div className="profile-section">
-        {/* Profile Picture */}
         <div className="profile-picture">
           <img src={image || "/default-avatar.png"} alt="Profile" className="profile-image" />
-          <button className="plus-button" onClick={handleButtonClick}>+</button>
+          <button className="plus-button" onClick={() => fileInputRef.current.click()}>+</button>
         </div>
 
-        {/* Hidden File Input */}
         <input
           type="file"
           accept="image/*"
           ref={fileInputRef}
           className="hidden-input"
-          onChange={handleImageChange}
+          onChange={(event) => {
+            if (event.target.files && event.target.files[0]) {
+              const file = event.target.files[0];
+              const reader = new FileReader();
+
+              reader.onload = (e) => {
+                setImage(e.target.result);
+              };
+
+              reader.readAsDataURL(file);
+            }
+          }}
         />
 
-        {/* User Info Labels */}
         <div className="vbox">
           <label className="profile-label">Name: {userInfo.name}</label>
           <label className="profile-label">Email: {userInfo.email}</label>
@@ -111,7 +105,7 @@ const ProfilePictureButton = () => {
         </div>
       </div>
 
-      {/* Scrollable Reviews Section (Below Profile Section) */}
+      {/* Scrollable Reviews Section */}
       <div className="reviews-section">
         <h2>User Reviews</h2>
         <div className="reviews-container">
