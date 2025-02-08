@@ -1,12 +1,11 @@
 import { useState, useRef } from "react";
-import "./ProfilePictureButton.css"; // Import CSS file
+import "./ProfilePictureButton.css";
 
 const ProfilePictureButton = () => {
   const [image, setImage] = useState(null);
-  const [name, setName] = useState(""); // New state for text input
-  const fileInputRef = useRef(null); // Reference to the hidden file input
+  const [name, setName] = useState("");
+  const fileInputRef = useRef(null); // Reference to hidden file input
 
-  // Resize and crop image to a circular shape using Canvas API
   const resizeAndCropToCircle = (file, size, quality, callback) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -22,13 +21,11 @@ const ProfilePictureButton = () => {
         canvas.width = size;
         canvas.height = size;
 
-        // Draw circular mask
         ctx.beginPath();
         ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
         ctx.closePath();
         ctx.clip();
 
-        // Center and resize image within the circle
         const scale = Math.max(size / img.width, size / img.height);
         const x = (size - img.width * scale) / 2;
         const y = (size - img.height * scale) / 2;
