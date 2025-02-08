@@ -1,16 +1,21 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./StudentLogin.css";
 import { auth } from "../config/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { collection, getDocs, setDoc, doc } from "firebase/firestore";
+import { useAuth } from "../config/AuthContext";
 
 export default function StudentLogin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const { logIn } = useAuth();
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
         try {
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const userCredential = await logIn(email, password);
             const userID = userCredential.user.uid;
 
             // Check if userID exists in any document in the Businesses collection
@@ -20,6 +25,7 @@ export default function StudentLogin() {
 
             if (userExists) {
                 console.log("User logged in successfully");
+                navigate("/Home");
             } else {
                 setError("User is not registered as a User.");
                 console.error("UserID not found in Users collection");
