@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: top;
     height: 100vh;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     color: #4D4D4D;
 }
 
@@ -34,4 +34,9 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
 }
