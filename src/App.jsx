@@ -8,6 +8,7 @@ import Profile from './pages/Profile';
 import './App.css'
 import StudentLogin from './pages/StudentLogin'
 import BusinessLogin from './pages/BusinessLogin'
+import BusinessDashboard from './pages/BusinessDashboard'
 import Spot from './pages/Spot';
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
         <Route path="/Register" element={<Register/>} />
         <Route path="/StudentLogin" element={<StudentLogin/>} />
         <Route path="/BusinessLogin" element={<BusinessLogin/>} />
+        <Route path="/BusinessDashboard" element={<BusinessDashboard />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/Spot/:id" element={<Spot/>} />
         <Route path="/Profile" element={<Profile/>} />
