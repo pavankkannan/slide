@@ -80,7 +80,7 @@
   .profile-label {
     font-size: 20px;
     font-weight: bold;
-    color: black;
+    color: rgb(247, 7, 7);
   }
   
   /* Reviews Section - Appears Below Profile Info */
@@ -117,7 +117,7 @@
   /* Review Title */
   .review-card h3 {
     margin: 0;
-    font-size: 18px;
+    font-size: 15px;
   }
   
   /* Review Content */
@@ -125,4 +125,35 @@
     margin: 5px 0;
     font-size: 14px;
   }
+
+  .button-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: 100%;
+    padding: 10px;
+  }
+
+ /* Reviews Button (Top-Right) */
+.nav-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #ff0000e7; /* Blue */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    z-index: 10; /* Ensures it's above other elements */
+  }
+  
+  /* Hover effect */
+  .nav-button:hover {
+    background-color: #ff4400; /* Darker Blue */
+  }
+  
   
