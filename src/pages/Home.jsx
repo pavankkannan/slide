@@ -11,7 +11,8 @@ function NavBar() {
     return (
         <nav className="NavBar">
             <button className='navTab'>
-                <h1>Suggested</h1>
+                className={activeTab === 'home' ? 'active' : ''}
+                onClick={() => handleTabClick('home')}
             </button>
             <button className='navTab'>
                 <h1>Nearby</h1>
@@ -27,7 +28,7 @@ function BusinessCard() {
     return (
         <div className='BusinessCard'>
             <img src="/assets/living_water_tea_house.jpg" alt='ty'/>
-            <div className='CardText'>
+            <div className='cardText'>
                 <h1>Living Water Tea House</h1>
                 <p>1453 W Taylor St</p>
             </div>
@@ -40,7 +41,10 @@ const Home = () => {
         <>
             <div>SLIDE</div>
             <NavBar/>
-            <BusinessCard/>
+            <div className='cardRow'>
+                <BusinessCard/>
+                <BusinessCard/>
+            </div>
         </>
     )
 
