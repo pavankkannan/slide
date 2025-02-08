@@ -16,7 +16,7 @@ import Gmap from './pages/Gmap'
 const App = () => {
   return (
     <Router>
-      <nav>
+      {/* <nav>
         <ul>
           <li>
             <Link to="/ChooseLogin">ChooseLogin</Link>
@@ -31,7 +31,7 @@ const App = () => {
             <Link to ="/Profile">Profile</Link>
           </li>
         </ul>
-      </nav>
+      </nav> */}
 
       <Routes>
         <Route path="/" element={<ChooseLogin/>} />
