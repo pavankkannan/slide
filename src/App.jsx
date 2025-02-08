@@ -17,12 +17,16 @@ const App = () => {
           <li>
             <Link to="/ChooseLogin">Login</Link>
           </li>
+          <li>
+            <Link to ="/Spot">Spot</Link><Link/>
+          </li>
         </ul>
       </nav>
 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/ChooseLogin" element={<ChooseLogin />} />
+        <Route path="/Spot" element={<Spot/>}/>
       </Routes>
     </Router>
   );
