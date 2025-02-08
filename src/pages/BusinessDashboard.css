@@ -57,3 +57,43 @@
 .add-deal-button:hover {
     background-color: #c62828;
 }
+
+.deals-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.deals-list li {
+    background-color: #fff;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+}
+
+.popup-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
