@@ -1,26 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./BusinessLogin.css";
 import { auth, db } from "../config/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { collection, getDocs, setDoc, doc } from "firebase/firestore";
+import { useAuth } from "../config/AuthContext";
 
 export default function BusinessLogin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const { logIn } = useAuth();
+    const navigate = useNavigate();
+
+    // if (currentUser) {
+    //     navigate("/BusinessDashboard");
+    // }
 
     const handleLogin = async () => {
         try {
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const userCredential = await logIn(email, password); 
             const userID = userCredential.user.uid;
+            // if (!userID) {
+            //     throw new Error("Authentication failed. UserID not found.");
+            // }
 
-            // Check if userID exists in any document in the Businesses collection
+            // Check if userID exists in the Businesses collection
             const businessesRef = collection(db, "Businesses");
             const businessesSnapshot = await getDocs(businessesRef);
             const businessExists = businessesSnapshot.docs.some(doc => doc.data().userID === userID);
 
             if (businessExists) {
                 console.log("Business logged in successfully");
+                navigate("/BusinessDashboard");
             } else {
                 setError("User is not registered as a business.");
                 console.error("UserID not found in Businesses collection");
