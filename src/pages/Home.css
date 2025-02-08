@@ -1,4 +1,4 @@
-.navBar {
+.NavBar {
     border-radius: 15px;
     display: flex;
     flex-direction: row;
@@ -37,4 +37,9 @@
 .navTab:active {
     color: white;
     background-color: #FD3535;
+}
+
+.BusinessCard {
+    height: 100px;
+    background-color: #F6F5F5;
 }

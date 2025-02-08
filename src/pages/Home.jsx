@@ -9,7 +9,7 @@ function NavBar() {
       };
 
     return (
-        <nav className="navBar">
+        <nav className="NavBar">
             <button className='navTab'>
                 <h1>Suggested</h1>
             </button>
@@ -23,11 +23,24 @@ function NavBar() {
     );
   }
 
+function BusinessCard() {
+    return (
+        <div className='BusinessCard'>
+            <img src="/assets/living_water_tea_house.jpg" alt='ty'/>
+            <div className='CardText'>
+                <h1>Living Water Tea House</h1>
+                <p>1453 W Taylor St</p>
+            </div>
+        </div>
+    )
+}
+
 const Home = () => {
     return (
         <>
             <div>SLIDE</div>
             <NavBar/>
+            <BusinessCard/>
         </>
     )
 
