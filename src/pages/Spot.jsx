@@ -1,12 +1,19 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Spot.css";
+import Reviews from "./Reviews";
 
 function SbImg({ src }) {
     return (
         <img src={`/public/assets/${src}`} alt="Tea House" className="star-img" />
     );
 }
+
+let restaurantData = {
+    name: "",
+    addy: ""
+}
+
 
 const NavBar = () => {
     const navigate = useNavigate();
@@ -15,8 +22,8 @@ const NavBar = () => {
         <nav className="navbar">
             <a className="nav-link" onClick={() => navigate(-1)}>Back</a>
             <a className="nav-link" onClick={() => {
-                
-                navigate(`/Home`);}}>Reviews</a>
+                navigate(`/Reviews`, {state: restaurantData});
+                }}>Reviews</a>
             <a className="nav-link" onClick={() => {
                 
                 navigate(`/Promotions`);}}>Promotions</a>
@@ -46,6 +53,11 @@ const ReviewBlock = () => {
 function Spot() {
     const location = useLocation();
     const business = location.state;
+
+    restaurantData = {
+        name: business.name,
+        addy: business.address
+    }
 
     return (
         <div className="spot-container">
