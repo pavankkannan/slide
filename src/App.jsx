@@ -18,7 +18,7 @@ const App = () => {
   return (
     <AuthProvider>
       <Router>
-        <nav>
+        {/* <nav>
           <ul>
             <li>
               <Link to="/ChooseLogin">ChooseLogin</Link>
@@ -33,7 +33,7 @@ const App = () => {
               <Link to ="/Profile">Profile</Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
         <Routes>
           <Route path="/" element={<ChooseLogin/>} />
           <Route path="/ChooseLogin" element={<ChooseLogin/>} />

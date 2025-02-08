@@ -1,14 +1,62 @@
-.NavBar {
-    border-radius: 15px;
+.Home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.CentralNavBar {
     display: flex;
     flex-direction: row;
-    width: 85vw;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    margin-top: 7.5px;
+}
+
+.centralNavTab h1 {
+    font-size: 16px;
+}
+
+.centralNavTab {
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    width: 32%;
+    background-color: #FD3535;
+    color: white;
+    font-size: 16px;
+
+
+}
+
+.centralNavTab:first-child, .centralNavTab:last-child {
+    background-color: #FD3535;
+}
+
+.centralNavTab:first-child {
+    border-radius: 10px 0 0 10px;
+    border-right: 2px solid white;
+}
+
+.centralNavTab:last-child {
+    border-radius: 0 10px 10px 0;
+    border-left: 2px solid white;
+}
+
+
+.HomeNavBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     height: 35px;
     margin-bottom: 50px;
 }
 
 .navTab {
-    width: 34%;
+    width: 30%;
     border: 1px solid #FD3535;
     background-color: white;
     color: #FD3535;
@@ -18,14 +66,14 @@
 }
 
 .navTab:first-child {
-    width: 33%;
+    width: 30%;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
     border-right: none;
 }
 
 .navTab:last-child {
-    width: 33%;
+    width: 30%;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     border-left: none;
@@ -43,7 +91,7 @@
 .cardRow {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .BusinessCard {
@@ -58,6 +106,7 @@
     border-radius: 5px 5px 0 0;
     height: 65%;
     width: 100%;
+    border-bottom: 2px solid red;
 }
 
 .BusinessCard h1 {
