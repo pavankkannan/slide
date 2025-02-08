@@ -4,8 +4,6 @@ body {
     padding: 0;
     background-color: #f5f5f5;
 }
-
-/* Navbar */
 .navbar {
     display: flex;
     justify-content: center;
@@ -31,21 +29,17 @@ body {
     height: 50px;
     color: black;
 }
-
-/* Spot container */
 .spot-container {
     text-align: center;
     padding: 20px;
 }
 
-/* Spot title */
 .spot-title {
     font-size: 32px;
     color: #333;
     margin-top: 20px;
 }
 
-/* Spot image */
 .star-img {
     width: 60%;
     max-width: 500px;
@@ -54,7 +48,6 @@ body {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Review block */
 .review-block {
     display: flex;
     align-items: center;
