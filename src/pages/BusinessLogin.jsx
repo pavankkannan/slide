@@ -10,7 +10,7 @@ export default function BusinessLogin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const { currentUser, login } = useAuth();
+    const { logIn } = useAuth();
     const navigate = useNavigate();
 
     // if (currentUser) {
@@ -19,12 +19,11 @@ export default function BusinessLogin() {
 
     const handleLogin = async () => {
         try {
-            await login(email, password); // Use login from AuthContext
-            const userID = currentUser?.uid; // Ensure userID is retrieved
-
-            if (!userID) {
-                throw new Error("Authentication failed. UserID not found.");
-            }
+            const userCredential = await logIn(email, password); 
+            const userID = userCredential.user.uid;
+            // if (!userID) {
+            //     throw new Error("Authentication failed. UserID not found.");
+            // }
 
             // Check if userID exists in the Businesses collection
             const businessesRef = collection(db, "Businesses");
