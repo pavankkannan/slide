@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./BusinessLogin.css";
 import { auth, db } from "../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -8,6 +9,8 @@ export default function BusinessLogin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
         try {
@@ -21,6 +24,7 @@ export default function BusinessLogin() {
 
             if (businessExists) {
                 console.log("Business logged in successfully");
+                navigate("/BusinessDashboard");
             } else {
                 setError("User is not registered as a business.");
                 console.error("UserID not found in Businesses collection");
