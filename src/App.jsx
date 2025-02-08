@@ -13,7 +13,7 @@ import Spot from './pages/Spot';
 const App = () => {
   return (
     <Router>
-      {/* <nav>
+      <nav>
         <ul>
           <li>
             <Link to="/ChooseLogin">ChooseLogin</Link>
@@ -25,7 +25,7 @@ const App = () => {
             <Link to ="/Spot">Spot</Link><Link/>
           </li>
         </ul>
-      </nav> */}
+      </nav>
 
       <Routes>
         <Route path="/" element={<Home />} />
