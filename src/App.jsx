@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
-import Login from './pages/Login';
+import ChooseLogin from './pages/ChooseLogin';
 import './App.css'
 
 const App = () => {
@@ -13,14 +13,14 @@ const App = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/Login">Login</Link>
+            <Link to="/ChooseLogin">Login</Link>
           </li>
         </ul>
       </nav>
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Login" element={<Login />} />
+        <Route path="/ChooseLogin" element={<ChooseLogin />} />
       </Routes>
     </Router>
   );
