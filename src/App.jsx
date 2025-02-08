@@ -4,6 +4,8 @@ import './App.css'
 import Home from './pages/Home';
 import Register from './pages/Register';
 import ChooseLogin from './pages/ChooseLogin';
+import Profile from './pages/Profile';
+import './App.css'
 import StudentLogin from './pages/StudentLogin'
 import BusinessLogin from './pages/BusinessLogin'
 import Spot from './pages/Spot';
@@ -17,6 +19,7 @@ const App = () => {
             <Link to="/ChooseLogin">ChooseLogin</Link>
           </li>
           <li>
+            <Link to="/ChooseLogin">Login</Link>
             <Link to="/Home">Home</Link>
           </li>
           <li>
@@ -26,6 +29,8 @@ const App = () => {
       </nav> */}
 
       <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/ChooseLogin" element={<ChooseLogin />} />
         <Route path="/" element={<ChooseLogin/>} />
         <Route path="/ChooseLogin" element={<ChooseLogin/>} />
         <Route path="/Register" element={<Register/>} />
