@@ -35,7 +35,32 @@ const businesses = [
     },
 ];
 
-function NavBar() {
+
+function CentralNavBar() {
+    const navigate = useNavigate();
+    const handleClick = (route) => () => {
+        navigate(`/${route}`);
+    };
+
+    return (
+        <div className='CentralNavBar'>
+            <div className='centralNavTab' onClick={handleClick("Home")}>
+                <img src="/assets/home.png" style={{width: "20%"}}/>
+                <h1>HOME</h1>
+            </div>
+            <div className='centralNavTab' onClick={handleClick("Gmap")}>
+                <img src="/assets/map.png" style={{width: "20%"}}/>
+                <h1>MAP</h1>
+            </div>
+            <div className='centralNavTab' onClick={handleClick("Profile")}>
+                <img src="/assets/profile.png" style={{filter: "invert(90)", width: "30%", marginBottom: "-5px"}}/>
+                <h1>PROFILE</h1>
+            </div>
+        </div>
+    )
+}
+
+function HomeNavBar() {
     const [activeTab, setActiveTab] = useState('home');
 
     const handleTabClick = (tab) => {
@@ -43,7 +68,7 @@ function NavBar() {
       };
 
     return (
-        <nav className="NavBar">
+        <nav className="HomeNavBar">
             <button className='navTab'>
                 <h1>Suggested</h1>
             </button>
@@ -82,7 +107,7 @@ function BusinessCards() {
     };
 
     return (
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "15px" }}>
+        <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "15px" }}>
             {businesses.map((business, index) => (
             <BusinessCard
                 key={index}
@@ -98,11 +123,11 @@ function BusinessCards() {
 
 const Home = () => {
     return (
-        <>
-            <div>SLIDE</div>
-            <NavBar/>
+        <div className='Home'>
+            <CentralNavBar/>
+            <HomeNavBar/>
             <BusinessCards/>
-        </>
+        </div>
     )
 
   };
