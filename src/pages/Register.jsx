@@ -5,6 +5,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { v4 as uuidv4 } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
     const [role, setRole] = useState("student");
@@ -27,6 +28,7 @@ export default function Register() {
     });
 
     const auth = getAuth();
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, type, files, value } = e.target;
@@ -70,6 +72,7 @@ export default function Register() {
                     university: formData.university,
                     year: formData.year,
                 });
+                navigate("/Home");
             } else {
                 await addDoc(collection(db, "Businesses"), {
                     userID,
@@ -82,6 +85,7 @@ export default function Register() {
                     password: formData.password,
                     businessPicture: businessPictureURL,
                 });
+                navigate("/BusinessDashboard");
             }
             console.log("User added successfully with ID:", userID);
         } catch (error) {
