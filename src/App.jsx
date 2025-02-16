@@ -14,6 +14,7 @@ import Promotions from './pages/Promotions';
 import { AuthProvider } from './config/AuthContext';
 import Gmap from './pages/Gmap';
 import Reviews from './pages/Reviews';
+import LandingPage from './pages/LandingPage';
 
 const App = () => {
   return (
@@ -36,7 +37,7 @@ const App = () => {
           </ul>
         </nav> */}
         <Routes>
-          <Route path="/" element={<ChooseLogin/>} />
+          <Route path="/" element={<LandingPage/>} />
           <Route path="/ChooseLogin" element={<ChooseLogin/>} />
           <Route path="/Register" element={<Register/>} />
           <Route path="/StudentLogin" element={<StudentLogin/>} />
