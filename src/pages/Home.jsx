@@ -13,29 +13,13 @@ function CentralNavBar() {
 
     return (
         <div className='central-nav-bar'>
-            <div className='central-nav-tab' onClick={handleClick("Home")}>
-                <img src="/assets/home.png" alt="Home" />
-                <h1>HOME</h1>
-            </div>
-            <div className='central-nav-tab' onClick={handleClick("Gmap")}>
-                <img src="/assets/map.png" alt="Map" />
-                <h1>MAP</h1>
-            </div>
-            <div className='central-nav-tab' onClick={handleClick("Profile")}>
-                <img src="/assets/profile.png" alt="Profile" />
-                <h1>PROFILE</h1>
-            </div>
+            <h1 className="brand-title">Slide</h1>
+            <nav className='nav-links'>
+                <button onClick={handleClick("Home")} className='nav-button'>Home</button>
+                <button onClick={handleClick("Gmap")} className='nav-button'>Map</button>
+                <button onClick={handleClick("Profile")} className='nav-button'>Profile</button>
+            </nav>
         </div>
-    );
-}
-
-function HomeNavBar() {
-    return (
-        <nav className="home-nav-bar">
-            <button className='nav-tab'>Suggested</button>
-            <button className='nav-tab'>Nearby</button>
-            <button className='nav-tab'>Deals</button>
-        </nav>
     );
 }
 
@@ -61,13 +45,12 @@ function BusinessCards() {
                 const querySnapshot = await getDocs(collection(db, "Businesses"));
                 const businessList = await Promise.all(querySnapshot.docs.map(async (doc) => {
                     const businessData = doc.data();
-                    let imageUrl = "/assets/default.png"; // Default image
+                    let imageUrl = "/assets/default.png";
 
                     if (businessData.businessPicture) {
                         try {
-                            const imageRef = ref(storage, businessData.businessPicture); // Use stored path
+                            const imageRef = ref(storage, businessData.businessPicture);
                             imageUrl = await getDownloadURL(imageRef);
-                            console.log("Success: ", imageUrl);
                         } catch (error) {
                             console.error(`Error loading image for ${businessData.businessName}:`, error);
                         }
@@ -103,7 +86,10 @@ const Home = () => {
     return (
         <div className='home'>
             <CentralNavBar />
-            <HomeNavBar />
+            <div className="hero-section">
+                <h2 className="hero-title">Discover the Best Businesses Around You</h2>
+                <p className="hero-subtitle">Explore new deals, find hidden gems, and connect with your favorite spots.</p>
+            </div>
             <BusinessCards />
         </div>
     );

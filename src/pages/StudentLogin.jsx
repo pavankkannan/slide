@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./StudentLogin.css";
-import { auth } from "../config/firebase";
+import { auth, db } from "../config/firebase";
 import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { collection, getDocs, setDoc, doc } from "firebase/firestore";
 import { useAuth } from "../config/AuthContext";

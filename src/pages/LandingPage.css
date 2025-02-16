@@ -1,0 +1,109 @@
+/* LandingPage.css */
+
+.landing-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f4f6;
+    /* Tailwind's bg-gray-100 */
+    background: linear-gradient(#e97aff, #FD3535);
+}
+
+.landing-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    padding: 0 15px;
+    /* Tailwind's text-gray-900 */
+}
+
+.landing-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 250px;
+    height: 100vh;
+    /* background: #295a9f; */
+    width: 100%;
+}
+
+.landing-heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1f2937;
+}
+
+.landing-text {
+    color: #c9d0d9;
+    /* Tailwind's text-gray-600 */
+    font-size: 1.125rem;
+    max-width: 40rem;
+    text-align: center;
+}
+
+.brand-title {
+    padding: 0px 20px;   
+    color: #FD3535; 
+}
+
+.brand-title:hover {
+    cursor: pointer;
+}
+
+.navbar-container {
+    width: 100%;
+    /* background: #6f9edf; */
+    position: fixed;
+    top: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-item {
+    list-style: none;
+    text-decoration: none;
+    color: #fff;
+    /* background: #6f9edf; */
+    padding-left: 100px;
+}
+
+.nav-links {
+    display: flex;
+    width: 100%;
+    /* background-color: #1f2937; */
+    padding: 50px;
+    justify-content: flex-end;
+}
+
+.start-btn {
+    border-style: none;
+    padding: 20px;
+    border-radius: 15px;
+    background: #FFF;
+    color: #FD3535;
+    font-size: 20px;
+    font-weight: bold;
+    transition: ease-out 0.2s;
+}
+.start-btn:hover {
+    cursor: pointer;
+    border-style: none;
+    padding: 20px;
+    border-radius: 15px;
+    background: #FD3535;
+    color: #FFF;
+    transition: ease-in 0.2s;
+}
+
+.landing-about {
+    /* min-height: 100vh; */
+    /* background: #FFF; */
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    align-items: center;
+}

@@ -1,0 +1,42 @@
+/* Navbar container */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    /* Space between brand & buttons */
+    align-items: center;
+    padding: 20px 30px;
+    background: linear-gradient(to right, #007bff, #e83e8c);
+    width: 100%;
+    /* Gradient color */
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Brand title */
+.brand-title {
+    font-size: 36px;
+    font-weight: bold;
+    left: 0;
+    margin-top: 40px;
+}
+
+/* Navigation links container */
+.nav-links {
+    list-style: none;
+    /* Space between buttons */
+}
+
+nav ul {
+    display: flex;
+
+}
+
+nav ul li {
+    list-style: none;
+}
+
+nav ul li a {
+    display: block;
+    text-decoration: none;
+    padding-right: 1000px;
+}
