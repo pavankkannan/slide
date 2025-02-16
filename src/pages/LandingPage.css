@@ -23,7 +23,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 250px;
+    padding-top: 250px;
     height: 100vh;
     /* background: #295a9f; */
     width: 100%;
@@ -32,15 +32,16 @@
 .landing-heading {
     font-size: 2.5rem;
     font-weight: bold;
-    color: #1f2937;
+    color: #FD3535;
 }
 
 .landing-text {
-    color: #c9d0d9;
+    color: #ffffff;
     /* Tailwind's text-gray-600 */
     font-size: 1.125rem;
     max-width: 40rem;
     text-align: center;
+    padding-bottom: 10px;
 }
 
 .brand-title {
@@ -101,9 +102,40 @@
     /* min-height: 100vh; */
     /* background: #FFF; */
     width: 100%;
-    height: 100vh;
+    height: 10vh;
     display: flex;
     flex-direction: column;
     /* justify-content: space-between; */
     align-items: center;
+}
+
+.about-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: -100px;
+    height: 100vh;
+    /* background: #295a9f; */
+    width: 100%;
+}
+
+.about-heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #7b1f1f;
+}
+
+.about-text {
+    color: #c9d0d9;
+    /* Tailwind's text-gray-600 */
+    font-size: 1.125rem;
+    max-width: 40rem;
+    text-align: center;
+    color: #fff;
+}
+
+.about-list {
+    list-style: none;
+    color: #fff;
+    font-weight: bold;
 }
